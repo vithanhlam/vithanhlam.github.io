@@ -1,6 +1,446 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Neko Paint</title>
-<style>body{font-family:system-ui,sans-serif;background:#1b1245;color:#fff;text-align:center;padding:12vh 16px}a{color:#ffc94d}</style></head>
-<body><h1>Neko Paint</h1><p>A relaxing coloring game for kids and families.</p>
-<p><a href="https://pub-903d93fd89554fe9b179219f86232114.r2.dev/legal/privacy.html">Privacy Policy</a> · <a href="https://pub-903d93fd89554fe9b179219f86232114.r2.dev/legal/terms.html">Terms of Use</a></p></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VI VAN LAM — Developer · Online CV</title>
+<meta name="description" content="Online CV of VI VAN LAM (ShieldPress): AI agents, CRM, ERP, e-commerce, WordPress and mobile apps (Android, iOS).">
+<meta property="og:title" content="VI VAN LAM — Developer">
+<meta property="og:description" content="AI agents, CRM, ERP, e-commerce, mobile apps and open-source tools.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vithanhlam.github.io/">
+<meta property="og:image" content="https://vithanhlam.github.io/assets/shieldpress.png">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" href="assets/shieldpress.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+:root{
+  --bg:#0b1220; --card:#111a2e; --line:#1f2b45; --text:#e6ebf5; --muted:#9aa8c4;
+  --accent:#f08a24; --accent2:#4db3ff; --ok:#22c55e;
+}
+:root[data-theme="light"]{
+  --bg:#f6f8fc; --card:#ffffff; --line:#e1e7f1; --text:#13203a; --muted:#52627f;
+  --accent:#d96c0c; --accent2:#0a7fd6;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#f6f8fc; --card:#ffffff; --line:#e1e7f1; --text:#13203a; --muted:#52627f;
+    --accent:#d96c0c; --accent2:#0a7fd6;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:19px}
+body{margin:0;background:var(--bg);color:var(--text);font:1rem/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
+i.fa-solid,i.fa-brands,i.fa-regular{width:1.15em;text-align:center}
+.wrap{max-width:1440px;margin:0 auto;padding:0 48px}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+header.nav,main,footer{position:relative}
+header.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:64px}
+.brand{font-weight:700;color:var(--text);font-size:1.05rem;display:flex;align-items:center;gap:10px}
+.brand img{width:30px;height:30px;border-radius:8px}
+.nav nav{display:flex;gap:20px;margin-left:auto;overflow-x:auto;white-space:nowrap}
+.nav nav a{color:var(--muted);font-size:.92rem}
+.nav nav a:hover{color:var(--text);text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:var(--card);color:var(--text);padding:11px 20px;border-radius:12px;font-size:.95rem;font-weight:600;cursor:pointer;font-family:inherit}
+.btn:hover{text-decoration:none;border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tiny{padding:7px 12px;font-size:.9rem}
+.hero{padding:84px 0 52px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,7vw,3.8rem);line-height:1.08;margin:0 0 12px}
+.hero h1 span{color:var(--accent)}
+.hero .role{font-size:1.2rem;color:var(--muted);margin:0 0 20px}
+.hero p.lead{max-width:62ch;margin:0 0 28px;font-size:1.1rem}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.avatar{width:190px;height:190px;border-radius:42px;box-shadow:0 12px 40px rgba(240,138,36,.25)}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:8px 0}
+a.stat{color:var(--text)}
+a.stat:hover{text-decoration:none;border-color:var(--accent)}
+.stat{background:color-mix(in srgb,var(--card) 72%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:20px}
+.stat b{display:block;font-size:2rem;line-height:1.2}
+.stat span{color:var(--muted);font-size:.9rem}
+.stat i{color:var(--accent);margin-bottom:6px;font-size:1.2rem}
+.badge{display:inline-flex;align-items:center;gap:8px;margin:0 0 16px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--card) 72%,transparent);font-size:.88rem;color:var(--muted)}
+.badge i{color:var(--ok);font-size:.55rem;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.sicon{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;font-size:1.5rem;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.mini{font-size:1.4rem;margin:44px 0 16px}
+.grid.steps{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1000px){.grid.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid.steps{grid-template-columns:1fr}}
+.step{position:relative}
+.step .num{position:absolute;right:18px;top:10px;font-size:2.6rem;font-weight:800;color:var(--line)}
+.step h3 i{color:var(--accent)}
+section{padding:56px 0}
+section h2{font-size:2rem;margin:0 0 8px;display:flex;align-items:center;gap:12px}
+section h2 i{color:var(--accent);font-size:1.6rem}
+section .sub{color:var(--muted);margin:0 0 28px;font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:18px}
+.card{background:color-mix(in srgb,var(--card) 72%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:12px;color:var(--text)}
+a.card:hover,.card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(240,138,36,.12)}
+a.card:hover{text-decoration:none;border-color:var(--accent)}
+.card{transition:transform .2s,box-shadow .2s,border-color .2s}
+.card h3{margin:0;font-size:1.2rem}
+.card p{margin:0;color:var(--muted);font-size:.98rem;flex:1}
+.app-head{display:flex;gap:14px;align-items:center}
+.app-head img{width:64px;height:64px;border-radius:15px;flex:none;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.82rem;padding:4px 11px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.chip.soon{border-color:#d4a017;color:#d4a017}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.links a{font-size:.92rem;font-weight:600;padding:8px 14px;border-radius:10px;border:1px solid var(--line);color:var(--text);display:inline-flex;align-items:center;gap:8px}
+.links a:hover{border-color:var(--accent);text-decoration:none}
+.links a.android i{color:var(--ok)}
+.links a.ios i{color:var(--accent2)}
+.timeline{border-left:2px solid var(--line);margin-left:8px;padding-left:28px;display:grid;gap:28px}
+.tl{position:relative}
+.tl::before{content:"";position:absolute;left:-36px;top:9px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}
+.tl h3{margin:0;font-size:1.2rem}
+.tl small{color:var(--muted);font-size:.9rem}
+.tl p{margin:6px 0 0;color:var(--muted)}
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.skills .card h3{font-size:1.1rem;display:flex;align-items:center;gap:10px}
+.skills .card h3 i{color:var(--accent)}
+.repo .meta{display:flex;gap:14px;color:var(--muted);font-size:.88rem}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+footer{border-top:1px solid var(--line);padding:36px 0 56px;color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:14px 28px;justify-content:space-between}
+footer .legal{display:flex;flex-wrap:wrap;gap:6px 18px}
+@media(max-width:720px){
+  .wrap{padding:0 20px}
+  html{font-size:17px}
+  .hero{grid-template-columns:1fr;padding-top:44px}
+  .avatar{width:120px;height:120px;border-radius:28px;order:-1}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stats .stat:last-child{grid-column:1/-1}
+  .brand span{display:none}
+}
+@media print{
+  header.nav,.cta,.links,#themeBtn,#langBtn{display:none}
+  :root{--bg:#fff;--card:#fff;--line:#ddd;--text:#000;--muted:#444}
+  section{padding:18px 0;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#about"><img src="assets/shieldpress.png" alt=""><span>VI VAN LAM</span></a>
+    <nav>
+      <a href="#about"><span data-vi="Giới thiệu">About</span></a>
+      <a href="#services"><span data-vi="Dịch vụ">Services</span></a>
+      <a href="#products"><span data-vi="Sản phẩm">Products</span></a>
+      <a href="#mobile"><span data-vi="Ứng dụng">Apps</span></a>
+      <a href="#opensource">GitHub</a>
+      <a href="#skills"><span data-vi="Kỹ năng">Skills</span></a>
+      <a href="#contact"><span data-vi="Liên hệ">Contact</span></a>
+    </nav>
+    <button class="btn tiny" id="langBtn" type="button" aria-label="Language">VI</button>
+    <button class="btn tiny" id="themeBtn" type="button" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div class="hero" id="about">
+  <div>
+    <p class="badge"><i class="fa-solid fa-circle"></i> <span data-vi="Nhận dự án AI, CRM, ERP &amp; thương mại điện tử">Open to AI, CRM, ERP &amp; e-commerce projects</span></p>
+    <h1>VI VAN <span>LAM</span></h1>
+    <p class="role"><i class="fa-solid fa-code"></i> <span data-vi="AI Agent · CRM · ERP · Thương mại điện tử · WordPress · Mobile">AI Agents · CRM · ERP · E-commerce · WordPress · Mobile</span></p>
+    <p class="lead"><span data-vi="Mình thiết kế và triển khai <b>AI Agent</b>, <b>CRM</b>, <b>ERP</b> và hệ thống <b>thương mại điện tử</b>, cùng hệ sinh thái giám sát <b>ShieldPress</b>, ứng dụng Android/iOS và công cụ mã nguồn mở. Làm việc tại ShieldPress.">I design and build <b>AI agents</b>, <b>CRM</b>, <b>ERP</b> and <b>e-commerce</b> systems, plus the <b>ShieldPress</b> monitoring ecosystem, Android/iOS apps and open-source tools. Working at ShieldPress.</span></p>
+    <div class="cta">
+      <a class="btn primary" href="https://shieldpress.net" target="_blank" rel="noopener"><i class="fa-solid fa-shield-halved"></i> <span data-vi="Xem ShieldPress">Visit ShieldPress</span></a>
+      <a class="btn" href="https://github.com/vithanhlam" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a class="btn" href="#mobile"><i class="fa-solid fa-mobile-screen-button"></i> <span data-vi="Ứng dụng di động">Mobile apps</span></a>
+      <button class="btn" type="button" onclick="window.print()"><i class="fa-solid fa-file-pdf"></i> <span data-vi="Tải CV (PDF)">Download CV (PDF)</span></button>
+    </div>
+  </div>
+  <img class="avatar" src="assets/shieldpress.png" alt="ShieldPress logo">
+</div>
+
+<div class="stats">
+  <div class="stat"><i class="fa-brands fa-google-play"></i><b>5</b><span><span data-vi="ứng dụng trên Google Play">apps on Google Play</span></span></div>
+  <div class="stat"><i class="fa-brands fa-apple"></i><b>4</b><span><span data-vi="ứng dụng iOS đã phát hành">iOS apps released</span></span></div>
+  <a class="stat" href="https://vi.wordpress.org/plugins/codewp-shield-monitor/" target="_blank" rel="noopener"><i class="fa-brands fa-wordpress"></i><b>1</b><span><span data-vi="plugin WordPress">WordPress plugin</span></span></a>
+  <div class="stat"><i class="fa-solid fa-code-branch"></i><b>14</b><span><span data-vi="repo công khai trên GitHub">public GitHub repos</span></span></div>
+  <div class="stat"><i class="fa-regular fa-calendar"></i><b>2017</b><span><span data-vi="có mặt trên GitHub từ">on GitHub since</span></span></div>
+</div>
+
+<section id="services">
+  <h2><i class="fa-solid fa-briefcase"></i> <span data-vi="Mình có thể xây dựng gì cho bạn">What I can build for you</span></h2>
+  <p class="sub"><span data-vi="Hệ thống doanh nghiệp và giải pháp AI, từ ý tưởng đến vận hành thực tế.">Business systems and AI solutions, from idea to production.</span></p>
+  <div class="grid">
+    <div class="card service"><div class="sicon"><i class="fa-solid fa-robot"></i></div><h3><span data-vi="AI Agent &amp; tự động hóa">AI Agents &amp; Automation</span></h3><p><span data-vi="AI Agent tùy biến biết đọc, quyết định và hành động: hỗ trợ khách hàng, trợ lý bán hàng, xử lý tài liệu và quy trình kết nối công cụ qua API và MCP.">Custom AI agents that read, decide and act: customer support, sales assistants, document processing, and workflows connected to your tools via APIs and MCP.</span></p><div class="chips"><span class="chip">LLM</span><span class="chip">Agents</span><span class="chip">MCP</span><span class="chip">Workflows</span></div></div>
+    <div class="card service"><div class="sicon"><i class="fa-solid fa-address-book"></i></div><h3><span data-vi="Hệ thống CRM">CRM Systems</span></h3><p><span data-vi="Hệ thống quản lý khách hàng: theo dõi lead, pipeline, khách hàng và hội thoại, tích hợp email, chat và website.">Customer relationship systems that track leads, pipelines, customers and conversations, integrated with email, chat and your website.</span></p><div class="chips"><span class="chip">Leads</span><span class="chip">Pipeline</span><span class="chip">Integrations</span></div></div>
+    <div class="card service"><div class="sicon"><i class="fa-solid fa-industry"></i></div><h3><span data-vi="Hệ thống ERP">ERP Systems</span></h3><p><span data-vi="Nền tảng quản trị doanh nghiệp: bán hàng, kho, mua hàng, hóa đơn, nhân sự và báo cáo, thiết kế theo đúng cách công ty bạn vận hành.">Business management platforms covering sales, inventory, purchasing, invoicing, HR and reporting, tailored to how your company really works.</span></p><div class="chips"><span class="chip">Inventory</span><span class="chip">Invoicing</span><span class="chip">Reports</span></div></div>
+    <div class="card service"><div class="sicon"><i class="fa-solid fa-cart-shopping"></i></div><h3><span data-vi="Website thương mại điện tử">E-commerce Websites</span></h3><p><span data-vi="Cửa hàng online tốc độ cao với WooCommerce hoặc code riêng: sản phẩm, thanh toán, vận chuyển, cảnh báo đơn hàng và chuẩn SEO.">Fast online stores with WooCommerce or custom stacks: catalog, checkout, payments, shipping, order alerts and SEO-ready pages.</span></p><div class="chips"><span class="chip">WooCommerce</span><span class="chip">Payments</span><span class="chip">SEO</span></div></div>
+    <div class="card service"><div class="sicon"><i class="fa-brands fa-wordpress"></i></div><h3><span data-vi="WordPress &amp; nền tảng web">WordPress &amp; Web Platforms</span></h3><p><span data-vi="Theme, plugin, tính năng riêng, tối ưu tốc độ và bảo mật cho WordPress, cùng ứng dụng web Next.js và Laravel.">Themes, plugins, custom features, performance tuning and security hardening for WordPress, plus Next.js and Laravel web apps.</span></p><div class="chips"><span class="chip">WordPress</span><span class="chip">Next.js</span><span class="chip">Laravel</span></div></div>
+    <div class="card service"><div class="sicon"><i class="fa-solid fa-mobile-screen-button"></i></div><h3><span data-vi="Ứng dụng di động">Mobile Apps</span></h3><p><span data-vi="Ứng dụng Android và iOS từ ý tưởng đến khi lên cửa hàng — mình đã phát hành nhiều ứng dụng trên Google Play và App Store.">Android and iOS apps from idea to store release — I have published several apps on Google Play and the App Store.</span></p><div class="chips"><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Expo</span></div></div>
+  </div>
+  <h3 class="mini"><span data-vi="Cách làm việc">How I work</span></h3>
+  <div class="grid steps">
+    <div class="card step"><div class="num">1</div><h3><i class="fa-solid fa-comments"></i> <span data-vi="Khám phá">Discover</span></h3><p><span data-vi="Làm rõ mục tiêu, người dùng và quy trình cần tự động hóa.">We clarify goals, users and the process to automate.</span></p></div>
+    <div class="card step"><div class="num">2</div><h3><i class="fa-solid fa-pen-ruler"></i> <span data-vi="Thiết kế">Design</span></h3><p><span data-vi="Chốt kiến trúc, mô hình dữ liệu và UX trước khi code.">Architecture, data model and UX agreed before coding.</span></p></div>
+    <div class="card step"><div class="num">3</div><h3><i class="fa-solid fa-code"></i> <span data-vi="Xây dựng">Build</span></h3><p><span data-vi="Triển khai theo từng bước, có bản demo để bạn thử sớm.">Iterative delivery with demos you can test early.</span></p></div>
+    <div class="card step"><div class="num">4</div><h3><i class="fa-solid fa-rocket"></i> <span data-vi="Vận hành &amp; hỗ trợ">Launch &amp; Support</span></h3><p><span data-vi="Triển khai, giám sát bằng ShieldPress và cải tiến liên tục.">Deployment, monitoring with ShieldPress, and ongoing improvements.</span></p></div>
+  </div>
+</section>
+
+<section id="products">
+  <h2><i class="fa-solid fa-cubes"></i> <span data-vi="Sản phẩm chính">Main products</span></h2>
+  <p class="sub"><span data-vi="Nền tảng ShieldPress và các sản phẩm đi kèm.">The ShieldPress platform and related products.</span></p>
+  <div class="grid">
+    <div class="card">
+      <div class="app-head"><img src="assets/shieldpress.png" alt="ShieldPress icon"><h3>ShieldPress</h3></div>
+      <p><span data-vi="Nền tảng giám sát website &amp; VPS: uptime, hạn SSL/tên miền, bảo mật đăng nhập, thay đổi file, cập nhật WordPress, CPU/RAM/disk, cảnh báo qua push, email và app di động. Gói miễn phí tới 5 website.">Website &amp; VPS monitoring platform: uptime, SSL/domain expiry, login security, file changes, WordPress updates, CPU/RAM/disk, with alerts via push, email and mobile apps. Free plan up to 5 websites.</span></p>
+      <div class="chips"><span class="chip"><span data-vi="Bảng điều khiển web">Web dashboard</span></span><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Chrome · Firefox · Edge</span><span class="chip">WordPress plugin</span></div>
+      <div class="links">
+        <a href="https://shieldpress.net" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> shieldpress.net</a>
+        <a href="https://vi.wordpress.org/plugins/codewp-shield-monitor/" target="_blank" rel="noopener"><i class="fa-brands fa-wordpress"></i> WP Plugin</a>
+        <a class="android" href="https://play.google.com/store/apps/details?id=com.shieldpress.app" target="_blank" rel="noopener"><i class="fa-brands fa-google-play"></i> Google Play</a>
+        <a class="ios" href="https://apps.apple.com/us/app/shieldpress/id6790792856" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> App Store</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="app-head"><img src="assets/terminal.png" alt="ShieldPress Terminal icon"><h3>ShieldPress Terminal</h3></div>
+      <p><span data-vi="Ứng dụng SSH · SFTP ưu tiên lưu trữ cục bộ để quản trị server ngay trên điện thoại.">Local-first SSH · SFTP app to manage your servers from your phone.</span></p>
+      <div class="chips"><span class="chip">SSH</span><span class="chip">SFTP</span><span class="chip"><span data-vi="Ưu tiên cục bộ">Local-first</span></span></div>
+      <div class="links">
+        <a class="android" href="https://play.google.com/store/apps/details?id=app.shieldpress.terminal" target="_blank" rel="noopener"><i class="fa-brands fa-google-play"></i> Google Play</a>
+        <a class="ios" href="https://apps.apple.com/us/app/shieldpress-terminal/id6808613628" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> App Store</a>
+        <a href="https://github.com/vithanhlam/shieldpress-terminal-docs" target="_blank" rel="noopener"><i class="fa-solid fa-book"></i> <span data-vi="Tài liệu">Docs</span></a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="app-head"><img src="assets/reqnora.png" alt="Reqnora icon"><h3>Reqnora</h3></div>
+      <p><span data-vi="Phê duyệt các yêu cầu automation từ điện thoại; có API và tài liệu tích hợp công khai.">Approve automation requests from your phone; public API and integration docs available.</span></p>
+      <div class="chips"><span class="chip">Automation</span><span class="chip">API</span></div>
+      <div class="links">
+        <a href="https://reqnora.com" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> reqnora.com</a>
+        <a class="android" href="https://play.google.com/store/apps/details?id=com.reqnora.app" target="_blank" rel="noopener"><i class="fa-brands fa-google-play"></i> Google Play</a>
+        <a class="ios" href="https://apps.apple.com/us/app/reqnora/id6812125894" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> App Store</a>
+        <a href="https://github.com/vithanhlam/Reqnora-API" target="_blank" rel="noopener"><i class="fa-solid fa-book"></i> <span data-vi="Tài liệu API">API Docs</span></a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="app-head"><img src="assets/nekopaint.png" alt="Neko Paint icon"><h3>Neko Paint</h3></div>
+      <p><span data-vi="Game tô màu thư giãn dành cho trẻ em và gia đình.">A relaxing coloring game for kids and families.</span></p>
+      <div class="chips"><span class="chip">Game</span><span class="chip"><span data-vi="Trẻ em &amp; gia đình">Kids &amp; Family</span></span><span class="chip soon"><span data-vi="iOS: đang chờ duyệt">iOS: waiting for review</span></span></div>
+      <div class="links">
+        <a class="android" href="https://play.google.com/store/apps/details?id=com.nekopaint.game" target="_blank" rel="noopener"><i class="fa-brands fa-google-play"></i> Google Play</a>
+        <a href="https://pub-903d93fd89554fe9b179219f86232114.r2.dev/legal/privacy.html" target="_blank" rel="noopener"><i class="fa-solid fa-user-shield"></i> <span data-vi="Chính sách bảo mật">Privacy Policy</span></a>
+        <a href="https://pub-903d93fd89554fe9b179219f86232114.r2.dev/legal/terms.html" target="_blank" rel="noopener"><i class="fa-solid fa-file-contract"></i> <span data-vi="Điều khoản sử dụng">Terms of Use</span></a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="app-head"><img src="assets/bienso.png" alt="Tra Cuu Bien So Xe icon"><h3>Tra Cứu Biển Số Xe</h3></div>
+      <p><span data-vi="Ứng dụng tra cứu thông tin biển số xe dành cho người dùng Việt Nam.">A vehicle license plate lookup app for Vietnamese users.</span></p>
+      <div class="chips"><span class="chip"><span data-vi="Tiếng Việt">Vietnamese</span></span><span class="chip"><span data-vi="Tiện ích">Utility</span></span></div>
+      <div class="links">
+        <a class="android" href="https://play.google.com/store/apps/details?id=com.vithanhlam.tracuuphatnguoixeoto" target="_blank" rel="noopener"><i class="fa-brands fa-google-play"></i> Google Play</a>
+        <a class="ios" href="https://apps.apple.com/us/developer/vi-van-lam/id1488616874" target="_blank" rel="noopener"><i class="fa-brands fa-apple"></i> App Store</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="app-head"><img src="assets/wp-plugin.png" alt="CodeWP Shield Monitor icon"><h3>CodeWP Shield Monitor</h3></div>
+      <p><span data-vi="Plugin WordPress miễn phí kết nối website với ShieldPress để giám sát bảo mật, kiểm tra uptime và cảnh báo tức thì. Có trên WordPress.org.">Free WordPress plugin that connects your site to ShieldPress for security monitoring, uptime checks and instant alerts. Listed on WordPress.org.</span></p>
+      <div class="chips"><span class="chip">WordPress</span><span class="chip">Security</span><span class="chip">Uptime</span><span class="chip">v1.5.0</span></div>
+      <div class="links">
+        <a href="https://vi.wordpress.org/plugins/codewp-shield-monitor/" target="_blank" rel="noopener"><i class="fa-brands fa-wordpress"></i> WP Plugin</a>
+        <a href="https://github.com/vithanhlam/codewp-shield-monitor" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mobile">
+  <h2><i class="fa-solid fa-mobile-screen-button"></i> <span data-vi="Ứng dụng Android &amp; iOS">Android &amp; iOS apps</span></h2>
+  <p class="sub"><span data-vi="Tất cả ứng dụng đã phát hành trên hai cửa hàng.">Everything published on both stores.</span></p>
+  <div class="grid">
+    <div class="card">
+      <h3><i class="fa-brands fa-android" style="color:var(--ok)"></i> Google Play</h3>
+      <p><span data-vi="Nhà phát triển: ShieldPress — 5 ứng dụng: ShieldPress, ShieldPress Terminal, Reqnora, Neko Paint, Tra Cứu Biển Số Xe.">Developer: ShieldPress — 5 apps: ShieldPress, ShieldPress Terminal, Reqnora, Neko Paint, Tra Cứu Biển Số Xe.</span></p>
+      <div class="links"><a class="android" href="https://play.google.com/store/apps/dev?id=8302629997818467129&amp;hl=en" target="_blank" rel="noopener"><i class="fa-brands fa-google-play"></i> <span data-vi="Mở trang nhà phát triển">Open developer page</span></a></div>
+    </div>
+    <div class="card">
+      <h3><i class="fa-brands fa-apple" style="color:var(--accent2)"></i> App Store</h3>
+      <p><span data-vi="Nhà phát triển: Vi Van Lam — ShieldPress, ShieldPress Terminal, Reqnora, Tra Cứu Biển Số Xe; Neko Paint đang chờ Apple duyệt.">Developer: Vi Van Lam — ShieldPress, ShieldPress Terminal, Reqnora, Tra Cứu Biển Số Xe; Neko Paint is waiting for Apple review.</span></p>
+      <div class="links"><a class="ios" href="https://apps.apple.com/us/developer/vi-van-lam/id1488616874" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios"></i> <span data-vi="Mở trang nhà phát triển">Open developer page</span></a></div>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-puzzle-piece" style="color:var(--accent)"></i> <span data-vi="Tiện ích trình duyệt">Browser extensions</span></h3>
+      <p><span data-vi="Extension ShieldPress cho Chrome, Firefox và Edge để theo dõi website ngay trên trình duyệt.">ShieldPress extensions for Chrome, Firefox and Edge to monitor your sites right from the browser.</span></p>
+      <div class="chips"><span class="chip"><i class="fa-brands fa-chrome"></i> Chrome</span><span class="chip"><i class="fa-brands fa-firefox-browser"></i> Firefox</span><span class="chip"><i class="fa-brands fa-edge"></i> Edge</span></div>
+      <div class="links"><a href="https://shieldpress.net" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-vi="Xem trên shieldpress.net">See on shieldpress.net</span></a></div>
+    </div>
+  </div>
+</section>
+
+<section id="opensource">
+  <h2><i class="fa-brands fa-github"></i> <span data-vi="Mã nguồn mở trên GitHub">Open source on GitHub</span></h2>
+  <p class="sub"><span data-vi="Một số dự án nổi bật — ">Selected projects — </span><a href="https://github.com/vithanhlam?tab=repositories" target="_blank" rel="noopener"><span data-vi="xem tất cả repo">see all repos</span></a>.</p>
+  <div class="grid" id="repos">
+    <a class="card repo" href="https://github.com/vithanhlam/TypeVN" target="_blank" rel="noopener"><h3><i class="fa-regular fa-keyboard"></i> TypeVN</h3><p>Fast Vietnamese Telex/VNI input method for Ubuntu (IBus)</p><div class="meta"><span><i class="dot" style="background:#dea584"></i>Rust</span><span><i class="fa-regular fa-star"></i> 4</span></div></a>
+    <a class="card repo" href="https://github.com/vithanhlam/ShieldPress-Local" target="_blank" rel="noopener"><h3><i class="fa-regular fa-keyboard"></i> ShieldPress-Local</h3><p>Local development environment for WordPress, Laravel &amp; PHP on Windows and Ubuntu</p><div class="meta"><span><i class="dot" style="background:#f1e05a"></i>JavaScript</span><span><i class="fa-regular fa-star"></i> 3</span></div></a>
+    <a class="card repo" href="https://github.com/vithanhlam/ShieldPress-VPS" target="_blank" rel="noopener"><h3><i class="fa-regular fa-keyboard"></i> ShieldPress-VPS</h3><p>Open-source AlmaLinux VPS management toolkit (GPLv3)</p><div class="meta"><span><i class="dot" style="background:#89e051"></i>Shell</span><span><i class="fa-regular fa-star"></i> 1</span></div></a>
+    <a class="card repo" href="https://github.com/vithanhlam/codewp-shield-monitor" target="_blank" rel="noopener"><h3><i class="fa-regular fa-keyboard"></i> codewp-shield-monitor</h3><p>ShieldPress — WordPress security plugin</p><div class="meta"><span><i class="dot" style="background:#4F5D95"></i>PHP</span></div></a>
+    <a class="card repo" href="https://github.com/vithanhlam/ShieldPress-Tracker-Nodejs" target="_blank" rel="noopener"><h3><i class="fa-regular fa-keyboard"></i> ShieldPress-Tracker-Nodejs</h3><p>Tracking &amp; monitoring SDK for Node.js, Next.js, Express</p><div class="meta"><span><i class="dot" style="background:#3178c6"></i>TypeScript</span></div></a>
+    <a class="card repo" href="https://github.com/vithanhlam/ShieldPress-Tracker-PHP" target="_blank" rel="noopener"><h3><i class="fa-regular fa-keyboard"></i> ShieldPress-Tracker-PHP</h3><p>Lightweight monitoring, security &amp; tracking SDK for PHP</p><div class="meta"><span><i class="dot" style="background:#4F5D95"></i>PHP</span></div></a>
+    <a class="card repo" href="https://github.com/vithanhlam/ShieldPress-Tracker-Python" target="_blank" rel="noopener"><h3><i class="fa-regular fa-keyboard"></i> ShieldPress-Tracker-Python</h3><p>Monitoring, performance &amp; security SDK for Python, Flask and Django</p><div class="meta"><span><i class="dot" style="background:#3572A5"></i>Python</span></div></a>
+    <a class="card repo" href="https://github.com/vithanhlam/ShieldPress-Tracker-Ruby-Gem" target="_blank" rel="noopener"><h3><i class="fa-regular fa-keyboard"></i> ShieldPress-Tracker-Ruby-Gem</h3><p>Monitoring, performance &amp; security SDK for Ruby, Rack and Rails</p><div class="meta"><span><i class="dot" style="background:#701516"></i>Ruby</span></div></a>
+  </div>
+</section>
+
+<section id="experience">
+  <h2><i class="fa-solid fa-timeline"></i> <span data-vi="Hành trình">Journey</span></h2>
+  <p class="sub"><span data-vi="Các cột mốc chính.">Key milestones.</span></p>
+  <div class="timeline">
+    <div class="tl"><h3>ShieldPress</h3><small><span data-vi="Nhà sáng lập / Developer">Founder / Developer</span></small><p><span data-vi="Xây dựng nền tảng giám sát WordPress &amp; VPS, plugin, SDK (PHP, Node.js, Python, Ruby), extension trình duyệt và app di động.">Building a WordPress &amp; VPS monitoring platform, plugin, SDKs (PHP, Node.js, Python, Ruby), browser extensions and mobile apps.</span></p></div>
+    <div class="tl"><h3><span data-vi="Phát hành ứng dụng di động">Shipping mobile apps</span></h3><small>Google Play · App Store</small><p><span data-vi="Ra mắt ShieldPress, ShieldPress Terminal, Reqnora và Tra Cứu Biển Số Xe trên cả hai nền tảng; Neko Paint đang chờ duyệt trên iOS.">Released ShieldPress, ShieldPress Terminal, Reqnora and Tra Cứu Biển Số Xe on both platforms; Neko Paint is in iOS review.</span></p></div>
+    <div class="tl"><h3><span data-vi="Công cụ mã nguồn mở">Open-source tools</span></h3><small>GitHub</small><p><span data-vi="TypeVN (bộ gõ tiếng Việt cho Ubuntu viết bằng Rust), ShieldPress Local và ShieldPress VPS dành cho developer.">TypeVN (Vietnamese input method for Ubuntu, written in Rust), ShieldPress Local and ShieldPress VPS for developers.</span></p></div>
+    <div class="tl"><h3>GitHub</h3><small><span data-vi="2017 →">2017 →</span></small><p><span data-vi="Tham gia GitHub từ tháng 12/2017 và liên tục xây dựng sản phẩm từ đó đến nay.">Joined GitHub in December 2017 and have kept building ever since.</span></p></div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2><i class="fa-solid fa-screwdriver-wrench"></i> <span data-vi="Kỹ năng">Skills</span></h2>
+  <p class="sub"><span data-vi="Công nghệ dùng trong các dự án ở trên.">Technologies used across the projects above.</span></p>
+  <div class="skills">
+    <div class="card"><h3><i class="fa-solid fa-robot"></i> <span data-vi="AI &amp; tự động hóa">AI &amp; Automation</span></h3><div class="chips"><span class="chip">AI Agents</span><span class="chip">LLM APIs</span><span class="chip">MCP</span><span class="chip">Workflow automation</span></div></div>
+    <div class="card"><h3><i class="fa-solid fa-building"></i> <span data-vi="Hệ thống doanh nghiệp">Business systems</span></h3><div class="chips"><span class="chip">CRM</span><span class="chip">ERP</span><span class="chip">E-commerce</span><span class="chip">WooCommerce</span></div></div>
+    <div class="card"><h3><i class="fa-brands fa-wordpress"></i> <span data-vi="Web &amp; WordPress">Web &amp; WordPress</span></h3><div class="chips"><span class="chip">WordPress</span><span class="chip">PHP</span><span class="chip">Laravel</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Next.js</span><span class="chip">React</span></div></div>
+    <div class="card"><h3><i class="fa-solid fa-mobile-screen"></i> <span data-vi="Mobile">Mobile</span></h3><div class="chips"><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">React Native / Expo</span></div></div>
+    <div class="card"><h3><i class="fa-brands fa-node-js"></i> <span data-vi="Backend &amp; SDK">Backend &amp; SDK</span></h3><div class="chips"><span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">Ruby</span><span class="chip">REST API</span></div></div>
+    <div class="card"><h3><i class="fa-brands fa-linux"></i> <span data-vi="Hệ thống &amp; DevOps">Systems &amp; DevOps</span></h3><div class="chips"><span class="chip">Linux</span><span class="chip">AlmaLinux</span><span class="chip">Ubuntu</span><span class="chip">Shell</span><span class="chip">Rust</span><span class="chip">SSH / SFTP</span></div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2><i class="fa-solid fa-envelope"></i> <span data-vi="Liên hệ">Contact</span></h2>
+  <p class="sub"><span data-vi="Bạn có dự án AI Agent, CRM, ERP hay cửa hàng online? Liên hệ qua các kênh bên dưới.">Have a project in mind — AI agent, CRM, ERP or an online store? Reach out through any channel below.</span></p>
+  <div class="cta">
+    <a class="btn primary" href="https://shieldpress.net" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> shieldpress.net</a>
+    <a class="btn" href="https://github.com/vithanhlam" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> github.com/vithanhlam</a>
+    <a class="btn" href="https://www.youtube.com/@code_wp_com/featured" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube</a>
+    <a class="btn" href="https://www.facebook.com/codewpvn" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i> Facebook</a>
+    <a class="btn" href="https://vi.wordpress.org/plugins/codewp-shield-monitor/" target="_blank" rel="noopener"><i class="fa-brands fa-wordpress"></i> WP Plugin</a>
+    <a class="btn" href="https://play.google.com/store/apps/dev?id=8302629997818467129&amp;hl=en" target="_blank" rel="noopener"><i class="fa-brands fa-google-play"></i> Google Play</a>
+    <a class="btn" href="https://apps.apple.com/us/developer/vi-van-lam/id1488616874" target="_blank" rel="noopener"><i class="fa-brands fa-app-store-ios"></i> App Store</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="yr">2026</span> VI VAN LAM · ShieldPress</div>
+    <div class="legal">
+      <a href="https://www.youtube.com/@code_wp_com/featured" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.facebook.com/codewpvn" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://github.com/vithanhlam" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <span>Neko Paint:</span>
+      <a href="https://pub-903d93fd89554fe9b179219f86232114.r2.dev/legal/privacy.html" target="_blank" rel="noopener"><span data-vi="Chính sách bảo mật">Privacy Policy</span></a>
+      <a href="https://pub-903d93fd89554fe9b179219f86232114.r2.dev/legal/terms.html" target="_blank" rel="noopener"><span data-vi="Điều khoản sử dụng">Terms of Use</span></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var lang="en";
+  function setLang(l){
+    lang=l; root.lang=l;
+    document.querySelectorAll("[data-vi]").forEach(function(el){
+      if(el.dataset.en==null) el.dataset.en=el.innerHTML;
+      el.innerHTML = l==="vi" ? el.dataset.vi : el.dataset.en;
+    });
+    document.getElementById("langBtn").textContent = l==="vi" ? "EN" : "VI";
+    try{localStorage.setItem("lang",l)}catch(e){}
+  }
+  document.getElementById("langBtn").onclick=function(){setLang(lang==="en"?"vi":"en")};
+  try{if(localStorage.getItem("lang")==="vi") setLang("vi")}catch(e){}
+  document.getElementById("themeBtn").onclick=function(){
+    var cur=root.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");
+    var next=cur==="dark"?"light":"dark"; root.setAttribute("data-theme",next);
+    try{localStorage.setItem("theme",next)}catch(e){}
+  };
+  try{var th=localStorage.getItem("theme"); if(th) root.setAttribute("data-theme",th)}catch(e){}
+
+  /* 3D tech background: rotating node network + perspective grid floor */
+  (function(){
+    var cv=document.getElementById("bg"), ctx=cv.getContext("2d");
+    var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var W,H,dpr,pts=[],N=150,mx=0,my=0,tx=0,ty=0,t=0,col=[240,138,36],col2=[77,179,255];
+    function rgb(v){var m=(v||"").trim().match(/^#([0-9a-f]{6})$/i);return m?[parseInt(m[1].slice(0,2),16),parseInt(m[1].slice(2,4),16),parseInt(m[1].slice(4,6),16)]:null}
+    function readColors(){var cs=getComputedStyle(root);col=rgb(cs.getPropertyValue("--accent"))||col;col2=rgb(cs.getPropertyValue("--accent2"))||col2}
+    function resize(){dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+    for(var i=0;i<N;i++){var u=Math.random()*2-1,a=Math.random()*Math.PI*2,r=Math.cbrt(Math.random())*1.0,q=Math.sqrt(1-u*u);pts.push([r*q*Math.cos(a),r*u,r*q*Math.sin(a)])}
+    addEventListener("mousemove",function(e){tx=e.clientX/W-.5;ty=e.clientY/H-.5},{passive:true});
+    addEventListener("resize",resize);
+    function rot(p,ay,ax){var x=p[0]*Math.cos(ay)+p[2]*Math.sin(ay),z=-p[0]*Math.sin(ay)+p[2]*Math.cos(ay),y=p[1]*Math.cos(ax)-z*Math.sin(ax);z=p[1]*Math.sin(ax)+z*Math.cos(ax);return[x,y,z]}
+    function draw(){
+      t+=reduce?0:.004; mx+=(tx-mx)*.05; my+=(ty-my)*.05;
+      var light=root.getAttribute("data-theme")==="light"||(!root.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: light)").matches);
+      var k=light?.55:1, S=Math.min(W,H)*.62, cx=W*.68, cy=H*.5, f=2.4;
+      ctx.clearRect(0,0,W,H);
+      /* perspective grid floor */
+      var gy=H*.92, hor=H*.62, sc=scrollY*.0;
+      ctx.lineWidth=1;
+      for(var gz=0;gz<14;gz++){
+        var z=((gz+(t*40)%1)/14), y=hor+(gy-hor)*z*z;
+        ctx.strokeStyle="rgba("+col2+","+(.02+.09*z)*k+")";
+        ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
+      }
+      for(var gx=-12;gx<=12;gx++){
+        ctx.strokeStyle="rgba("+col2+","+.07*k+")";
+        ctx.beginPath();ctx.moveTo(W/2+gx*W*.012,hor);ctx.lineTo(W/2+gx*W*.16,gy+ (H-gy));ctx.stroke();
+      }
+      /* node network */
+      var ay=t+mx*1.6, ax=.35+my*1.0+Math.sin(t*.7)*.12, P=[];
+      for(var i=0;i<N;i++){
+        var v=rot(pts[i],ay,ax), s=f/(f+v[2]);
+        P.push([cx+v[0]*S*s,cy+v[1]*S*s,v[2],s]);
+      }
+      for(var i=0;i<N;i++)for(var j=i+1;j<N;j++){
+        var a=pts[i],b=pts[j],dx=a[0]-b[0],dy=a[1]-b[1],dz=a[2]-b[2],d=dx*dx+dy*dy+dz*dz;
+        if(d<.09){
+          var al=(1-d/.09)*.5*((P[i][3]+P[j][3])/2)*k;
+          ctx.strokeStyle="rgba("+col+","+al+")";
+          ctx.beginPath();ctx.moveTo(P[i][0],P[i][1]);ctx.lineTo(P[j][0],P[j][1]);ctx.stroke();
+        }
+      }
+      for(var i=0;i<N;i++){
+        var p=P[i], depth=(1-p[2])/2, r=1+2.4*p[3]*p[3];
+        ctx.fillStyle="rgba("+(i%5?col:col2)+","+(.25+.6*Math.max(0,Math.min(1,depth)))*k+")";
+        ctx.beginPath();ctx.arc(p[0],p[1],r,0,6.283);ctx.fill();
+      }
+      if(!reduce) requestAnimationFrame(draw);
+    }
+    resize(); readColors(); draw();
+    document.getElementById("themeBtn").addEventListener("click",function(){setTimeout(readColors,0);if(reduce)draw()});
+    document.addEventListener("visibilitychange",function(){});
+  })();
+  document.getElementById("yr").textContent=new Date().getFullYear();
+
+  /* Live star counts from GitHub (falls back silently to the static cards) */
+  var colors={Rust:"#dea584",JavaScript:"#f1e05a",Shell:"#89e051",PHP:"#4F5D95",TypeScript:"#3178c6",Python:"#3572A5",Ruby:"#701516",HTML:"#e34c26"};
+  fetch("https://api.github.com/users/vithanhlam/repos?per_page=100&sort=updated").then(function(r){return r.ok?r.json():Promise.reject()}).then(function(list){
+    var skip=/github\.io$|legal|policies|docs$/i;
+    var repos=list.filter(function(r){return !r.fork&&!skip.test(r.name)}).sort(function(a,b){return b.stargazers_count-a.stargazers_count}).slice(0,8);
+    if(!repos.length) return;
+    var esc=function(s){return String(s||"").replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+    document.getElementById("repos").innerHTML=repos.map(function(r){
+      return '<a class="card repo" href="'+esc(r.html_url)+'" target="_blank" rel="noopener"><h3><i class="fa-regular fa-keyboard"></i> '+esc(r.name)+'</h3><p>'+esc(r.description)+'</p><div class="meta">'+
+        (r.language?'<span><i class="dot" style="background:'+(colors[r.language]||"#888")+'"></i>'+esc(r.language)+'</span>':'')+
+        (r.stargazers_count?'<span><i class="fa-regular fa-star"></i> '+r.stargazers_count+'</span>':'')+'</div></a>';
+    }).join("");
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>
