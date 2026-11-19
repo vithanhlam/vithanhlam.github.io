@@ -2,6 +2,11 @@
 
 All notable changes to this site are documented here.
 
+## [2.0.1] - 2026-11-19
+
+### Changed
+- Neko Paint is now live on the App Store: added the App Store link and removed the "waiting for review" notes.
+
 ## [2.0.0] - 2026-11-16
 
 Rebuilt the Neko Paint landing page into a full online CV / portfolio.
